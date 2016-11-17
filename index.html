@@ -24,9 +24,9 @@
         <div class='row'>
             <div class='col-xs-2 col-sm-3'></div>
             <div class='col-xs-8 col-sm-6 text-center'>
-                <h1>
-                    abcdefghijklmnopqrstuvwxyz
-                </h1>
+               <a href="index.html">
+                  <img src="img/logo.png" alt="">
+               </a>
             </div>
             <div class='col-xs-2 col-sm-3'></div>
         </div>
@@ -63,10 +63,17 @@
     </div>
     
     <div class="game container-fluid" ng-show='loggedIn'>
-         <div class="row">
+         <div class="row game-row">
+                
+                <div class="you-won" ng-show='won'>
+                   <h2>Wow {{username}}!</h2>
+                    You typed it in {{timer}} seconds! That's {{(26/timer | number:2)*1}} letters per second. Great job! :)<br><br>
+                    
+                    <button class='form-control' ng-click='resetGame()'>Play again</button>
+                </div>
+            
              <div class="col-xs-12 col-sm-6 col-sm-offset-3 game-col">
-               
-                <h2>Get ready!</h2> {{timer}}
+                <h2>Get ready {{username}}!</h2> Timer: {{timer}}
                 <p>
                    The game will start once you start typing. But after that you have to be fast!
                 </p>
@@ -75,14 +82,6 @@
                     {{letter.letter}}
                 </div>
                 
-                
-                <div class="you-won" ng-show='won'>
-                   <h2>Wow {{username}}!</h2>
-                    You typed it in {{timer}} seconds! Great job! :)<br><br>
-                    
-                    <button class='form-control' ng-click='resetGame()'>Play again</button>
-                </div>
-
              </div>
          </div>
     </div>

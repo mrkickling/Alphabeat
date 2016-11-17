@@ -12,6 +12,7 @@ app.controller('alphacontroller', function($scope, $interval){
     $scope.resetGame = function(){
         $scope.timer = 0;
         $scope.won = false;
+        timerPromise = '';
         
         for(var i = 0; i<alphabet.length ;i++){
             $scope.alphabet[i].class = '';
