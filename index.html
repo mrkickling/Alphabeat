@@ -7,30 +7,135 @@
     
     <!-- Compiled and minified CSS of bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></script>
+
+    <link rel="stylesheet" href="css/style.css">
 
    <!-- jQuery and angularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
+    
     <!-- Compiled and minified JavaScript of bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src='js/main.controller.js'></script>
 </head>
-<body>
+<body ng-app='alphabeat' ng-controller='alphacontroller' ng-KeyDown = "onKeyDown($event)" ng-cloak>
     <header class='container-fluid'>
-        <h1>Alfabetsspelet</h1>
-    </header>
-    <div class='container-fluid'>
         <div class='row'>
-            <div class='col-xs-2'></div>
-            <div class='col-xs-8'>
-                <h2>
-                    Välkommen
-                </h2>
+            <div class='col-xs-2 col-sm-3'></div>
+            <div class='col-xs-8 col-sm-6 text-center'>
+                <h1>
+                    abcdefghijklmnopqrstuvwxyz
+                </h1>
             </div>
-            <div class='col-xs-2'></div>
+            <div class='col-xs-2 col-sm-3'></div>
+        </div>
+    </header>
+    <div class='container-fluid welcome' ng-hide='loggedIn'>
+        <div class='row'>
+            <div class='col-xs-1 col-sm-3'></div>
+            <div class='col-xs-10 col-sm-6 text-center'>
+                <h3>
+                    Welcome to Alphabeat
+                </h3>
+                <p>
+                    Alphabeat is all about typing the alphabeth as fast as possible and compete against other players all around the world. You first have to make up a (preferabelly unique) username, but then you're good to go!
+                </p>
+
+            </div>
+            <div class='col-xs-1 col-sm-3'></div>
         </div>
     </div>
-    <footer class='container-fluid'></footer>
+    
+    <div class='container-fluid login' ng-hide='loggedIn'>
+        <div class='row'>
+            <div class='col-xs-1 col-sm-3'></div>
+            
+            <div class='col-xs-10 col-sm-6 text-center'>
+               <form>
+                    <input type="text" ng-model = "username" class='form-control' placeholder='Username'>
+                    <input type="submit" value='Enter' class='form-control' ng-click='addUser()'>
+               </form>
+            </div>
+            
+            <div class='col-xs-1 col-sm-3'></div>
+        </div>
+    </div>
+    
+    <div class="game container-fluid" ng-show='loggedIn'>
+         <div class="row">
+             <div class="col-xs-12 col-sm-6 col-sm-offset-3 game-col">
+               
+                <h2>Get ready!</h2> {{timer}}
+                <p>
+                   The game will start once you start typing. But after that you have to be fast!
+                </p>
+                
+                <div class='letter' ng-class='letter.class' ng-repeat='letter in alphabet'>
+                    {{letter.letter}}
+                </div>
+                
+                
+                <div class="you-won" ng-show='won'>
+                   <h2>Wow {{username}}!</h2>
+                    You typed it in {{timer}} seconds! Great job! :)<br><br>
+                    
+                    <button class='form-control' ng-click='resetGame()'>Play again</button>
+                </div>
+
+             </div>
+         </div>
+    </div>
+
+    
+    <div class='container-fluid toplist' ng-show="loggedIn">
+        <div class='row'>
+            <div class='col-xs-6 col-sm-3 col-sm-offset-3 text-center'>
+                <h3 class='top-list-banner'>
+                    Top list desktop
+                </h3>
+                
+                <ol>
+                    <li>Nicholas - 3.5s</li>
+                    <li>Patrik - 3.7s</li>
+                    <li>Nilo - 3.9s</li>
+                    <li>Patriot - 5.5s</li>
+                    <li>Armis - 9.5s</li>
+                </ol>
+            </div>
+            
+            <div class='col-xs-6 col-sm-3 text-center'>
+                <h3 class='top-list-banner'>
+                    Top list mobile
+                </h3>
+              
+                <ol>
+                    <li>Nicholas - 2.5s</li>
+                    <li>Patrik - 3.5s</li>
+                    <li>Morko - 5.5s</li>
+                    <li>Patriot - 6.5s</li>
+                    <li>Ingo - 29.5s</li>
+                </ol>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center">
+       <div class="row">
+        <div class="col-xs-12">
+
+            <a href="http://twitter.com/loxdalen">
+             <i class="fa fa-twitter"></i> 
+            </a>
+            <a href="http://github.com/mrkickling">
+             <i class="fa fa-github"></i> 
+            </a>
+            <a href="mailto:loxdalen@gmail.com">
+             <i class="fa fa-envelope"></i> 
+            </a>
+        </div>
+       </div>
+    </footer>
 </body>
 </html>

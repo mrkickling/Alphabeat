@@ -1,0 +1,104 @@
+body{
+    
+}
+
+header{
+    background:#40535f;
+    padding:30px;
+}
+header h1{
+    color:white;
+    margin:0;
+    padding:0;
+}
+.welcome h3{
+    font-size:20px;
+}
+.login input[type=text]{
+    width:69%;
+    display:inline;
+    font-size:20px;
+    height:60px;
+    text-align:center;
+}
+.login input[type=submit]{
+    width:29%;
+    display:inline;
+    font-size:20px;
+    height:60px;
+}
+.login{
+    margin-top:10px;
+    padding:20px;
+}
+.toplist{
+    padding-bottom:30px;
+    border-top:1px dotted lightgrey;
+}
+.top-list-banner{
+    font-size:14px;
+    background:#95a3ad;
+    border-radius:5px;
+    padding:10px;
+    color:white;
+}
+.toplist ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+footer{
+    height:100px;
+    background:#40535f;
+    padding:30px;
+}
+footer a{
+    color:white;
+    font-size:30px;
+    margin:10px;
+}
+footer a:hover{
+    text-decoration:none;
+}
+.game{
+    background:lightgrey;
+}
+.game-col{
+    padding:20px;
+}
+
+.letter{
+    width:50px;
+    height:50px;
+    font-size:20px;
+    padding:10px;
+    text-align:center;
+    color:white;
+    background:grey;
+    display:inline-block;
+    margin:3px;
+}
+.typedLetter{
+    background:green;
+}
+.nextLetter{
+    background:yellow;
+    color:black;
+}
+.failedLetter{
+    background:red;
+}
+
+.you-won{
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.95);
+    position:absolute;
+    top:0;
+    left:0;
+    text-align:center;
+    padding:40px;
+    font-size:20px;
+    
+}
