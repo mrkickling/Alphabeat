@@ -3,6 +3,7 @@
 body{
     font-family: 'Open Sans', sans-serif;   
     background:#40535f;
+    color:lightgrey;
 }
 
 header{
@@ -11,6 +12,7 @@ header{
 }
 header img{
     width:50%;
+    min-width:150px;
 }
 .welcome{
     padding:20px;
