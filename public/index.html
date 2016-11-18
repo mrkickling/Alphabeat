@@ -37,10 +37,11 @@
             <div class='col-xs-1 col-sm-3'></div>
             <div class='col-xs-10 col-sm-6 text-center'>
                 <h3>
-                    Welcome to Alphabeat
+                   Welcome to
+                    <img src="img/alphabeat.png" alt="">
                 </h3>
                 <p>
-                    Alphabeat is all about typing the alphabeth as fast as possible and compete against other players all around the world. You first have to make up a (preferabelly unique) username, but then you're good to go!
+                    Alphabeat is all about typing the alphabet as fast as possible and compete against other players all around the world. You first have to make up a (preferabelly unique) username, but then you're good to go!
                 </p>
 
             </div>
@@ -68,13 +69,21 @@
                 
                 <div class="you-won" ng-show='won'>
                    <h2>Wow {{username}}!</h2>
-                    You typed it in {{timer}} seconds! That's {{(26/timer | number:2)*1}} letters per second. Great job! :)<br><br>
+                   <p>
+                       You typed it in {{timer}} seconds! That's {{(26/timer | number:2)*1}} letters per second. Great job! :)
+                   </p>
                     
                     <button class='form-control' ng-click='resetGame()'>Play again</button>
                 </div>
             
              <div class="col-xs-12 col-sm-6 col-sm-offset-3 game-col">
-                <h2>Get ready {{username}}!</h2> Timer: {{timer}}
+                <h2>
+                    Get ready {{username}}!
+                    <span class="label label-success points-label">
+                        <span class="glyphicon glyphicon-time"></span> {{timer}} s
+                    </span>
+                </h2>
+
                 <p>
                    The game will start once you start typing. But after that you have to be fast!
                 </p>

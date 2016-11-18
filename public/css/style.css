@@ -23,8 +23,14 @@ header img{
     font-size:16px;
 }
 .welcome h3{
-    font-size:50px;
+    font-size:25px;
     font-weight:bold;
+}
+.welcome h3 img{
+    width:70%;
+    height:auto;
+    display:block;
+    margin:auto;
 }
 .login input[type=text]{
     width:69%;
@@ -116,16 +122,33 @@ footer a:hover{
     top:0;
     left:0;
     text-align:center;
-    padding:40px;
+    padding:50px;
     font-size:20px;
     z-index:10;
 }
+.you-won p{
+    width:60%;
+    margin:auto;
+    margin-bottom:10px;
+    font-size:18px;
+}
+.points-label{
+    font-size:15px;
+    margin-top:-5px;
+}
 
 .you-won button{
-    width:50%;
-    margin-left:25%;
+    width:40%;
+    margin-left:30%;
 }
 .you-won h2{
     font-size:30px;
     font-weight:bold;
+}
+
+@media screen and (max-width:500px){
+    .points-label{
+        display:block;
+        margin-top:10px;
+    }
 }
