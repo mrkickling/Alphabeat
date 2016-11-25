@@ -17,6 +17,7 @@
     
     <!-- Compiled and minified JavaScript of bootstrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.6.0/socket.io.min.js'></script>
     <script src='js/main.controller.js'></script>
 </head>
 
@@ -105,11 +106,7 @@
                 </h3>
                 
                 <ol>
-                    <li>Nicholas - 3.5s</li>
-                    <li>Patrik - 3.7s</li>
-                    <li>Nilo - 3.9s</li>
-                    <li>Patriot - 5.5s</li>
-                    <li>Armis - 9.5s</li>
+                    <li ng-repeat="record in topLists.desktopTopList | orderBy : 'score'">{{record.username}} - {{record.score}}</li>
                 </ol>
             </div>
             
@@ -119,11 +116,7 @@
                 </h3>
               
                 <ol>
-                    <li>Nicholas - 2.5s</li>
-                    <li>Patrik - 3.5s</li>
-                    <li>Morko - 5.5s</li>
-                    <li>Patriot - 6.5s</li>
-                    <li>Ingo - 29.5s</li>
+                    <li ng-repeat="record in topLists.mobileTopList">{{record.username}} - {{record.score}}</li>
                 </ol>
 
             </div>
