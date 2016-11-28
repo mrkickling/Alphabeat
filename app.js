@@ -41,6 +41,12 @@ var connection = mysql.createConnection({
 var desktopTopList;
 var mobileTopList;
 
+connection.query("DELETE FROM alphabeat WHERE username='Jokke' AND device='mobile'", function(err){
+    if(err){
+        console.log(err);
+    }
+})
+
 function getDataInterval(){ 
     var word = 'abcdefghijklmnopqrstuvwxyz';
     

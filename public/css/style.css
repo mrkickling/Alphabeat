@@ -146,9 +146,19 @@ footer a:hover{
     font-weight:bold;
 }
 
+.letter-input{
+    width:100%;
+}
+
 @media screen and (max-width:500px){
     .points-label{
         display:block;
         margin-top:10px;
+    }
+    .letter{
+        width:20px;
+        height:20px;
+        font-size:12px;
+        padding:2px;
     }
 }

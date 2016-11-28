@@ -21,7 +21,7 @@
     <script src='js/main.controller.js'></script>
 </head>
 
-<body ng-app='alphabeat' ng-controller='alphacontroller' ng-KeyDown = "onKeyDown($event)" ng-cloak>
+<body ng-app='alphabeat' ng-controller='alphacontroller' ng-keypress = "onKeyDown($event)" ng-cloak>
     <header class='container-fluid'>
         <div class='row'>
             <div class='col-xs-2 col-sm-3'></div>
@@ -88,9 +88,12 @@
                 <p>
                    The game will start once you start typing. But after that you have to be fast!
                 </p>
-                
+                <span ng-show='mobile'>
+                    Type here:<input type="text" id="mobile-text-input">
+                </span>
+                <br><br>
                 <div class='letter' ng-class='letter.class' ng-repeat='letter in alphabet'>
-                    {{letter.letter}}
+                        {{letter.letter}}
                 </div>
                 
              </div>

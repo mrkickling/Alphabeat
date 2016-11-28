@@ -1,12 +1,21 @@
+
+var device;
+if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+  device = 'mobile';
+} else {
+  device = 'desktop';
+}
+
+
+
 var app = angular.module('alphabeat', []);
 
 app.controller('alphacontroller', function($scope, $interval, socket){
-    var device;
     $scope.topLists;
-    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
-      device = 'phone';
-    } else {
-      device = 'desktop';
+    if(device=='mobile'){
+        $scope.mobile = true;
+    }else{
+        $scope.mobile = false;
     }
 
     socket.on('toplists', function(data){
@@ -20,6 +29,7 @@ app.controller('alphacontroller', function($scope, $interval, socket){
     
     $scope.addUser = function(){
         $scope.loggedIn = true;
+        $("#a").focus();
     }
     $scope.resetGame = function(){
         $scope.timer = 0;
@@ -47,10 +57,14 @@ app.controller('alphacontroller', function($scope, $interval, socket){
     
     $scope.alphabet[0].class = 'nextLetter';
     var currentLetterKey = 0;
+    $scope.currentLetter = $scope.alphabet[currentLetterKey].letter;
 
     
     $scope.currentKey = 'a';
         // Event handlers
+    $scope.onKeyUp = function(){
+        $('#mobile-text-input').val('');
+    }
     $scope.onKeyDown = function (keyEvent) {
         
         if($scope.loggedIn){
@@ -65,7 +79,12 @@ app.controller('alphacontroller', function($scope, $interval, socket){
 
             
             var currentLetter = $scope.alphabet[currentLetterKey].letter;
-            var pressedLetter = String.fromCharCode(keyEvent.which).toLowerCase();
+            
+            if($scope.mobile){
+                var pressedLetter = $('#mobile-text-input').val().toLowerCase();
+            }else{
+                var pressedLetter = String.fromCharCode(keyEvent.which).toLowerCase();
+            }
             if(pressedLetter == currentLetter){
                 if(currentLetterKey >= alphabet.length-1){
                     $interval.cancel(timerPromise);
@@ -73,13 +92,15 @@ app.controller('alphacontroller', function($scope, $interval, socket){
                     $scope.alphabet[currentLetterKey].class="typedLetter";
                     $scope.won = true;
                     socket.emit('won', [$scope.username, $scope.timer, device, 'abcdefghijklmnopqrstuvwxyz'])
+                    
                     if(device == 'mobile'){
-                        if($scope.timer<$scope.topLists.mobileTopList[$scope.topLists.mobileTopList.length-1].score){
+                        if($scope.timer < $scope.topLists.mobileTopList[$scope.topLists.mobileTopList.length-1].score){
                             console.log('you made a record on mobile!');
-                            $scope.topList.mobileTopList[$scope.topLists.mobileTopList.length] = {
+                            $scope.topLists.mobileTopList[$scope.topLists.mobileTopList.length] = {
                                 username:$scope.username,
                                 score:$scope.timer
                             }
+                            $scope.topLists.mobileTopList = sortByKey($scope.topLists.mobileTopList, 'score')
                         }
                     }else{
                         if( $scope.timer < $scope.topLists.desktopTopList[$scope.topLists.desktopTopList.length-1].score ){
@@ -88,12 +109,18 @@ app.controller('alphacontroller', function($scope, $interval, socket){
                                 username:$scope.username,
                                 score:$scope.timer
                             }
+                            $scope.topLists.desktopTopList = sortByKey($scope.topLists.desktopTopList, 'score')
                         }
                     }
+                    
                 }else{
                     $scope.alphabet[currentLetterKey].class="typedLetter";
                     currentLetterKey++;
                     $scope.alphabet[currentLetterKey].class="nextLetter";
+                    
+                    if($scope.mobile){
+                        $("#" + $scope.alphabet[currentLetterKey].letter).focus();
+                    }
                 }
             }else if($scope.won==false){
                 $scope.alphabet[currentLetterKey].class="failedLetter";
@@ -131,4 +158,12 @@ app.factory('socket', function ($rootScope) {
     }
   };
 });
+
+function sortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
+
 
