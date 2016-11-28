@@ -89,7 +89,7 @@
                    The game will start once you start typing. But after that you have to be fast!
                 </p>
                 <span ng-show='mobile'>
-                    Type here:<input type="text" id="mobile-text-input">
+                    Type here:<input type="text" id="mobile-text-input" ng-keyup = "onKeyDown($event); onKeyUp()" autofocus>
                 </span>
                 <br><br>
                 <div class='letter' ng-class='letter.class' ng-repeat='letter in alphabet'>

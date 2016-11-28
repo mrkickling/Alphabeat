@@ -56,7 +56,7 @@ function getDataInterval(){
         }
 
         mobileTopList = rows;
-        console.log(mobileTopList);
+        console.log('Got latest mobile toplist');
     });
     
     connection.query("SELECT * FROM alphabeat WHERE word='"+word + "' AND device='desktop' ORDER BY score ASC LIMIT 10;", function(err, rows, fields) {
@@ -65,7 +65,7 @@ function getDataInterval(){
         }
 
         desktopTopList = rows;
-        console.log(desktopTopList);
+        console.log('Got latest desktop toplist');
     });
 
     setTimeout(getDataInterval, 30000);

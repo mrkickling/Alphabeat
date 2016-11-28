@@ -6,6 +6,9 @@ if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/))
   device = 'desktop';
 }
 
+$(function(){
+    $('#mobile-text-input').focus();
+})
 
 
 var app = angular.module('alphabeat', []);
@@ -14,6 +17,7 @@ app.controller('alphacontroller', function($scope, $interval, socket){
     $scope.topLists;
     if(device=='mobile'){
         $scope.mobile = true;
+        $('#mobile-text-input').focus();
     }else{
         $scope.mobile = false;
     }
